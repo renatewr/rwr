@@ -1,8 +1,19 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin"),
     components = require("./lib/components"),
     autoprefixer = require('autoprefixer'),
-    browsers = require('@amedia/postcss-config').autoprefixer,
     fs = require("./lib/fs");
+    
+var browsers = [
+    'last 1 chrome versions',
+    'last 1 ff versions',
+    'last 1 edge versions',
+    'safari 7-10',
+    'ios_saf 7-10',
+    'chrome 38',
+    'chrome 34',
+    'ie 11',
+    'ie_mob 11'
+];
 
 var entries = {
     polyfills : './browser/polyfills.js',
@@ -47,7 +58,7 @@ var config = {
             allChunks: false
         })
     ],
-    postcss: [ autoprefixer(2) ]
+    postcss: [ autoprefixer(browsers) ]
 };
 
 
