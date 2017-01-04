@@ -8,15 +8,15 @@ const http            = require('http'),
       compression     = require('compression'),
       cors            = require('cors'),
       //Header  = require('@amedia/-header'),
-      ErrorMid        = require('@amedia/error-kjerneteam').middleware,
-      metrics         = require('@amedia/statsd-metrics'),
-      access          = require('@amedia/amedia-access-log'),
+      //ErrorMid        = require('@amedia/error-kjerneteam').middleware,
+      //metrics         = require('@amedia/statsd-metrics'),
+      //access          = require('@amedia/amedia-access-log'),
       config          = require('../config/config.js'),
       log             = require('./log.js'),
       Lib             = require('../lib/main');
 
 
-const errorMid = new ErrorMid();
+//const errorMid = new ErrorMid();
 const app = express();
 
 
@@ -27,15 +27,7 @@ app.set('views', path.resolve(__dirname, '../views/'));
 // Set up the library this app exposes
 const lib = new Lib();
 
-metrics({
-    host : config.get('statsdServer'),
-    port : config.get('statsdPort'),
-    name : config.get('name'),
-    serverName : config.get('serverName'),
-    serverType : config.get('serverType')
-}, (error) => {
-    log.error(error, 'error setting up metrics');
-});
+
 
 
 // Configure application
@@ -43,7 +35,7 @@ app.disable('x-powered-by');
 app.enable('trust proxy');
 
 // Set middleware
-app.use(metrics.middleware);
+//app.use(metrics.middleware);
 app.use(compression());
 app.use(cors());
 
@@ -57,11 +49,11 @@ app.use(config.get('apiPath') + '/assets',
     function(req, res, next) {
         next();
     },
-    metrics.label('assets'),
+    //metrics.label('assets'),
     express.static('./assets')
 );
 
-app.get(config.get('contextPath') + '/apiadmin/ping',  metrics.label('ping'),
+app.get(config.get('contextPath') + '/apiadmin/ping',
     function(req, res, next) {
         res.headerManager.setLocalChannelMaxAge(0);
         next();
@@ -73,7 +65,7 @@ app.get(config.get('contextPath') + '/apiadmin/ping',  metrics.label('ping'),
     });
 
 // After ping because we do not want ping in the access log
-app.use(access(log));
+//app.use(access(log));
 app.use(config.get('apiPath'), lib.routes);
 
 // Log errors
@@ -85,17 +77,17 @@ app.use((error, req, res, next) => {
 // Error handling
 app.use((error, req, res, next) => {
     // This might become obsolete if the errorMid.middleWare() starts to set a channel-maxage
-    res.headerManager.setLocalChannelMaxAge(15);
+    //res.headerManager.setLocalChannelMaxAge(15);
     next(error);
 });
 
-app.use(errorMid.middleware());
+//app.use(errorMid.middleware());
 
 // Catch all requests which fall through the
 // middleware chain, not matching any routes,
 // and serve a 404 page
 
-app.use(errorMid.response({code : 404, message : 'File Not Found'}));
+//app.use(errorMid.response({code : 404, message : 'File Not Found'}));
 
 // Set up http server and Export application
 module.exports = http.createServer(app);

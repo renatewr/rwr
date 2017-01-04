@@ -5,13 +5,12 @@
 const   path    = require('path'),
         fs      = require('fs'),
         convict = require('convict'),
-        Env     = require('@amedia/api-environment'),
         pckage  = require('../package.json');
 
 // Load API environment
 
-const env = new Env();
-env.load();
+//const env = new Env();
+//env.load();
 
 // Configuration schema
 
@@ -104,13 +103,6 @@ let conf = convict({
         default : 8125,
         env     : 'STATSD_PORT'
     },
-
-    gaiaUrl: {
-        doc     : 'Gaia URL',
-        format  : String,
-        default : 'http://varnish-local.api.no/gaia',
-        env     : 'GAIA_URL'
-    },
 });
 
 
@@ -123,10 +115,10 @@ if (fs.existsSync(path.resolve(__dirname, '../config/local.json'))) {
     conf.loadFile([path.resolve(__dirname, '../config/', conf.get('env') + '.json')]);
 }
 
-if (env.get('server.type')) {conf.set('serverType', env.get('server.type'));}
-if (env.get('server.name')) {conf.set('serverName', env.get('server.name'));}
-if (env.get('server.role')) {conf.set('serverRole', env.get('server.role'));}
-if (env.get('backend.type')) {conf.set('backendType', env.get('backend.type'));}
+//if (env.get('server.type')) {conf.set('serverType', env.get('server.type'));}
+//if (env.get('server.name')) {conf.set('serverName', env.get('server.name'));}
+//if (env.get('server.role')) {conf.set('serverRole', env.get('server.role'));}
+//if (env.get('backend.type')) {conf.set('backendType', env.get('backend.type'));}
 
 // Validate all properties and export it
 
