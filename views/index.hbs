@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tivoli components</title>
+    <base href="{{apiPath}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <style>
+        .flex-wrap-center {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .component {
+            width: 320px;
+            margin: 1.5rem;
+            text-align: center;
+        }
+        .component h2 {
+            font-weight: normal;
+        }
+        .component p {
+            margin-right: .75rem;
+            margin-left: .75rem;
+        }
+        .img-page {
+            width: 100%;
+        }
+        .img-component {
+            width: 50px;
+            height: 50px;
+            margin-bottom: .5rem;
+            background-color: #f26c4f;
+        }
+        .jumbotron {
+            margin-bottom: 0;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: #fff;
+        }
+        .jumbotron .container {
+            max-width: 30rem;
+        }
+        .tag {
+            background: #555;
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-full navbar-dark bg-inverse">
+        <a class="navbar-brand" href="#">Tivoli</a>
+    </nav>
+
+    <section class="jumbotron text-xs-center">
+        <div class="container">
+            <img class="img-page" src="assets/tivoli.svg" alt="tivoli" />
+            <h2 class="jumbotron-heading">Components</h2>
+            <p class="lead">Making the tivoli run</p>
+        </div>
+    </section>
+
+    <div class="flex-wrap-center">
+        {{#each components as |component|}}
+            <div class="component">
+                <img class="img-circle img-component" src="assets/component.svg" alt="component" />
+                <h4>{{component.name}}</h4>
+                <p>{{component.description}}</p>
+                <div class="flex-wrap-center">
+                    {{#each component.assets.js as |asset|}}
+                        <p><a href="{{asset.public}}" class="tag" title="{{asset.public}}">JS</a>{{asset.size}} ({{asset.gzip}})</p>
+                    {{/each}}
+                    {{#each component.assets.css as |asset|}}
+                        <p><a href="{{asset.public}}" class="tag" title="{{asset.public}}">CSS</a>{{asset.size}} ({{asset.gzip}})</p>
+                    {{/each}}
+                </div>
+                {{#if component.hasDoc}}
+                <p>
+                    <a class="btn btn-secondary" href="{{component.name}}/doc" role="button">Documentation &raquo;</a>
+                </p>
+                {{/if}}
+                <p>
+                    <a class="btn btn-secondary" href="{{component.name}}/manifest.json" role="button">Manifest &raquo;</a>
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="{{component.name}}/builder" role="button">View &raquo;</a>
+                </p>
+            </div>
+        {{/each}}
+    </div>
+</body>
+</html>

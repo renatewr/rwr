@@ -1,0 +1,14 @@
+node_modules
+gh-pages
+config/local.json
+.DS_Store
+.idea
+.idea/**/*
+*.iml
+*.log
+*.tgz
+*.sock
+tmp/**/*
+assets/bundles/**/*
+config/version.txt
+assets.json

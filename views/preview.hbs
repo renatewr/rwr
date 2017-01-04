@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{component.name}}</title>
+    <base href="{{apiPath}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {{#each assets.css}}
+        <link rel="preload" href="{{this.public}}" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="{{this.public}}"></noscript>
+    {{/each}}
+    {{#each inline.css}}
+        <link rel="stylesheet" href="{{this.public}}">
+    {{/each}}
+    
+</head>
+<body>
+    {{#if missingParams.length}}
+        <h1>Missing parameters:</h1>
+        {{#each missingParams}}
+            <div>{{this.name}}, examples: <span>[{{this.examples}}]</span></div>
+        {{/each}}
+    {{else}}
+        {{{markup}}}
+    {{/if}}
+
+    {{#each polyfills.js}}
+        <script type="text/javascript" src="{{this.public}}" ></script>
+    {{/each}}
+    
+    <script type="text/javascript">
+    if ('serviceWorker' in navigator) {      
+      navigator.serviceWorker
+             .register("sw2.js", {scope: '/api/rwr/'})
+             .then(function() { console.log('Service Worker 2Registered'); });
+    }
+    </script>
+
+    {{#each assets.js}}
+        <script type="text/javascript" async src="{{this.public}}" ></script>
+    {{/each}}
+    
+
+</body>

@@ -1,0 +1,14 @@
+{
+  "strict": true,
+  "node": true,
+  "unused": true,
+  "undef": true,
+  "esnext": true,
+  "varstmt": true,
+  "globals": {
+    "Promise": true
+  },
+  "mocha": true,
+  "eqeqeq": true,
+  "curly": true
+}

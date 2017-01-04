@@ -1,0 +1,59 @@
+
+@primary-background : rgba(242, 241, 238, 1);
+@spicy: rgba(242, 108, 79, 1);
+@primary-sheet:rgba(255,255,255,1);
+@light-grey:rgba(194,194,194,1);
+@light-grey-opacity:rgba(194,194,194,0.4);
+@black: rgba(34,34,34, 1);
+
+body,p, figure, h1, h2{
+  margin:0;
+  padding:0;
+}
+* {
+  box-sizing: border-box;
+}
+
+@keyframes openone {
+  0%{
+    transform:translateX(-500%);
+  }
+  
+  100% {
+    transform:translateX(0%);
+  }  
+}
+@keyframes opentwo {
+  0%{
+    transform:translateX(500%);
+  }
+  50%{
+    transform:translateX(500%);
+  }
+  
+  100% {
+    transform:translateX(0%);
+  }  
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
