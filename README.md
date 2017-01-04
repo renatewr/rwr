@@ -1,17 +1,13 @@
 ---
-Team: Annonse
 Stack: Node
 
 ---
 
-# Tivoli
-Front components for classifieds
+# RWR
+playground
 
 ## Quick Start
-Make sure your npm is correctly set up. Make sure you have a npmjs.com user with access to the amedia npm organization, and run:
-```
-$ npm login
-```
+Make sure your npm is correctly set up. 
 
 Then run: 
 ```
@@ -19,12 +15,10 @@ $ npm install
 $ npm run dev
 ```
 
-Open [http://localhost:9670/api/tivoli](http://localhost:9670/api/tivoli) to have a look at the existing components.
-
 ## Creating a helloworld component
 Create a folder  **views/helloworld/** then create a file **views/helloworld/index.hbs** and insert:
 ```
-<tivoli-helloworld>Hello World!</tivoli-helloworld>
+<rwr-helloworld>Hello World!</rwr-helloworld>
 ```
 
 Then create **views/helloworld/component.js** and insert the code below.
@@ -41,7 +35,7 @@ module.exports = {
 };
 ```
 
-All **done!** You may find your component listed at [http://localhost:9670/api/tivoli](http://localhost:9670/api/tivoli).
+All **done!** You may find your component listed at [http://localhost:9670/api/rwr](http://localhost:9670/api/rwr).
 
 ### Adding Javascript/CSS (Optional)
 Start by creating a folder **views/helloworld/browser**. Inside this folder, create the files: **index.js** and/or **styles.less**. 
@@ -65,7 +59,7 @@ document.registerElement('tivoli-helloworld', {
 ```
 
 ### Adding images and SVG (Optional)
-These files should go into a folder named **views/helloworld/browser/img**. Any file inserted there will be accessible at http://localhost:9670/api/tivoli/assets/helloworld/img/ + the name of your file.
+These files should go into a folder named **views/helloworld/browser/img**. Any file inserted there will be accessible at http://localhost:9670/api/rwr/assets/helloworld/img/ + the name of your file.
  
 ### Adding documentation (Optional)
 To add documentation for your component, add a file named **README.md** to you component folder. A link to the documentation will automatically be inserted on the index page. 
