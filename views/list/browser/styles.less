@@ -5,3 +5,65 @@ body,p, figure, h1, h2{
 * {
   box-sizing: border-box;
 }
+
+.cows-list{
+  flex:1;
+}
+
+#new-cow-form {
+  padding: 0.5em;  
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: flex;
+}
+
+#new-cow {
+  flex:1;
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 3px;
+  border: 0;
+}
+
+#cow-items {
+  list-style: none;
+  padding: 0.5em 1em;
+  margin: 0;
+}
+
+#cow-items li {
+  font-size: 0.9em;
+  padding: 0.5em;
+  background: #FFF;
+  border-bottom: 1px solid #EEE;
+  margin: 0.5em 0;
+  
+  display: flex;
+  align-items: center;
+  label{
+    flex:1;
+  }
+}
+
+.destroy{
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+}
+.destroy:after{
+  content: "x";
+}
+
+button{
+  outline:none;
+  background: none;
+  border:none;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}

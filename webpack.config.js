@@ -3,18 +3,19 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin"),
     autoprefixer = require('autoprefixer'),
     fs = require("./lib/fs");
     
-var browsers = [
-    'last 1 chrome versions',
-    'last 1 ff versions',
-    'last 1 edge versions',
-    'safari 7-10',
-    'ios_saf 7-10',
-    'chrome 38',
-    'chrome 34',
-    'ie 11',
-    'ie_mob 11'
-];
-
+    
+var browsers = {
+  browsers: [
+     'last 1 chrome versions',
+     'last 1 ff versions',
+     'last 1 edge versions',
+     'safari 7-10',
+     'ios_saf 7-10',
+     'chrome 38',
+     'chrome 34',
+     'ie 11',
+     'ie_mob 11' ]
+};
 var entries = {
     polyfills : './browser/polyfills.js',
     inline : './browser/inline.less'
@@ -35,8 +36,12 @@ components.forEach(entry => {
 
 console.log(entries);
 
-var config = {
-    // TODO: Add common Configuration
+module.exports = {
+    entry:  entries,
+    output: {
+        path:     'assets/bundles',
+        filename: '[name].js'
+      },  
     module: {
         loaders: [
             {
@@ -58,28 +63,5 @@ var config = {
             allChunks: false
         })
     ],
-    postcss: [ autoprefixer(browsers) ]
+    postcss: [ autoprefixer() ]
 };
-
-
-var bundlesConfig = Object.assign({}, config, {
-    entry: entries,
-    output: {
-        path:     'assets/bundles',
-        filename: '[name].js'
-    },
-});
-
-var barEntries = {
-    sw : './browser/sw.js'
-};
-var barConfig = Object.assign({}, config,{    
-    entry: './browser/sw.js',
-    output: {
-       path: __dirname+'/',
-       filename: 'sw2.js'
-    },
-});
-
-
-module.exports = [bundlesConfig];

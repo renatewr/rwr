@@ -1,8 +1,24 @@
 /* jshint node: true, strict: true */
 
-/** @module comscore params */
+/**
+ * querySelector wrapper
+ *
+ * @param {string} selector Selector to query
+ * @param {Element} [scope] Optional scope element for the selector
+ */
+export function qs(selector, scope) {
+  return (scope || document).querySelector(selector);
+}
 
-"use strict";
+/**
+ * querySelector wrapper
+ *
+ * @param {string} selector Selector to query
+ * @param {Element} [scope] Optional scope element for the selector
+ */
+export function qsAll(selector, scope) {
+  return (scope || document).querySelectorAll(selector);
+}
 
 /**
  * Parses the values of a attribute on a DOM element to a array
@@ -12,28 +28,10 @@
  * @returns {Array}
  */
 
-module.exports.attributeToArray = function(element, attribute) {
-    return element.getAttribute(attribute) ? element.getAttribute(attribute).split(' ') : [];
+module.exports.attributeToArray = function attributeToArray(element, attribute) {
+  return element.getAttribute(attribute) ? element.getAttribute(attribute).split(' ') : [];
 };
 
-
-/**
- * Parses the values of a attribute on a DOM element to an object
- *
- * @param {string} name The value of a_click_area in comscore
- * @param {string} nedstatCode The nedstatCode for the publication
- * @returns {object}
- */
-
-module.exports.comscoreParams = function(name, nedstatCode, category, device){
-    return {
-        a_click_area : name,
-        a_edition : device || 'mobile',
-        a_view : device || 'mobile',
-        a_virtual : nedstatCode,
-        ns_category : category || 'home'
-    };
-};
 
 /**
  * Removes a CSS class name from a DOM element
@@ -43,20 +41,17 @@ module.exports.comscoreParams = function(name, nedstatCode, category, device){
  * @returns {HTMLElement}
  */
 
-module.exports.removeClass = function(target, className) {
-    if(target) {
-        if (target.classList){
-            target.classList.remove(className);
-        } else {
-            // IE9 compat
-            target.className = target.className.replace(new RegExp('\\b' + className + '\\b'), '').trim();
-        }
-        return target;
+module.exports.removeClass = function removeClass(target, className) {
+  if (target) {
+    if (target.classList) {
+      target.classList.remove(className);
     }
+  }
+  return target;
 };
 
 /**
- * Check if a DOM element contains a class name - NOT IN USE
+ * Check if a DOM element contains a class name
  *
  * @param {HTMLElement} element A DOM element
  * @param {String} className The name of the class to check for
@@ -140,14 +135,14 @@ module.exports.jsonFromUrl = function(search) {
     return result;
 };
 
-module.exports.areEqualIgnoreCase = function(string1, string2) {
-    return string1.toUpperCase() === string2.toUpperCase();
+module.exports.areEqualIgnoreCase = function areEqualIgnoreCase(string1, string2) {
+  return string1.toUpperCase() === string2.toUpperCase();
 };
 
-module.exports.m2 = function (value) {
-    return value !== undefined ? value + "m\xB2" : '';
+module.exports.m2 = function m2(value) {
+  return value !== undefined ? `${value}m\xB2` : '';
 };
 
-module.exports.price = function(value){
-    return value !== undefined ? "Kr " + value : '';
+module.exports.price = function price(value) {
+  return value !== undefined ? `Kr ${value}` : '';
 };

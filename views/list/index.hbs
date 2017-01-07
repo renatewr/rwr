@@ -3,10 +3,24 @@
   <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
   <button id="butAdd" class="headerButton" aria-label="Add"></button>
 </header>
-
 <main class="main site-main--home">
-  <rwr-ku-list class="ku-lists">      
-  </rwr-ku-list>  
+  <section class="cows-list">
+    <!-- Form for new Todo Items -->
+    <form id="new-cow-form" method="POST" action="#">
+      <input type="text" name="new-cow" id="new-cow" placeholder="Legg inn noe om en ku..." required>
+      <label>Navn<input type="text" name="new-cow-name" id="new-cow-name" placeholder="Navn..." required></label>
+      <label>Dato<input type="date" name="new-cow-date" id="new-cow-date" placeholder="Dato..." required></label>
+      <button onclick="submit">Add data </button>
+    </form>
+
+    <!-- Todo Item List -->
+    <ul id="cow-items"></ul>
+  </section>
+  
+  
+  
+  <moo-list class="moo-list">
+  </moo-list>  
 </main>
 
 <script>
@@ -19,12 +33,14 @@
   <nav class="site-nav">
     <ul>
       <li>
+        <a href="/api/rwr/kuer/preview">
         <img class="img-circle img-component" src="assets/cow_head.svg" alt="cow" />        
         <span>Start</span>
+        </a>
       </li>
       <li>
         <img class="img-circle img-component" src="assets/plus.svg" alt="Legg til" />        
-        <span>Legg til</span>
+        <span>Liste</span>
       </li>
       <li>
         <img class="img-circle img-component" src="assets/day.svg" alt="Dag" />        
@@ -32,5 +48,4 @@
       </li>
     </ul>
   </nav>
-  <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 </footer>

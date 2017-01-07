@@ -1,6 +1,6 @@
 'use strict';
 // Set a name for the current cache
-var cacheName = 'cows-v10'; 
+var cacheName = 'cows-v15'; 
 
 // Default files to always cache
 var cacheFiles = [
@@ -13,9 +13,9 @@ var cacheFiles = [
   '/api/rwr/assets/plus.svg',
   '/api/rwr/assets/day.svg',  
   '/api/rwr/assets/bundles/kuer.03e89533d979b401e721fb87f72ec25b.js',
-  '/api/rwr/assets/bundles/polyfills.f263a5dca5bc61098711212aaebee0b9.js',	
-  '/api/rwr/assets/bundles/kuer.fc8da5619a749f9964498a5164d92267.css',
-  '/api/rwr/assets/bundles/inline.20fe115d871b8d2aa3f0dd3b5bf834fe.css'
+  '/api/rwr/assets/bundles/polyfills.f263a5dca5bc61098711212aaebee0b9.js',	  
+  '/api/rwr/assets/bundles/kuer.166c1f50a39e70836b77063cf0b5417d.css',  
+  '/api/rwr/assets/bundles/inline.3d6f6f0fadfde522a046103456acfc6f.css'
 ]
 
 
