@@ -6,19 +6,9 @@
  * @param {string} selector Selector to query
  * @param {Element} [scope] Optional scope element for the selector
  */
-export function qs(selector, scope) {
-  return (scope || document).querySelector(selector);
-}
-
-/**
- * querySelector wrapper
- *
- * @param {string} selector Selector to query
- * @param {Element} [scope] Optional scope element for the selector
- */
-export function qsAll(selector, scope) {
+module.exports.qsAll = function qsAll(selector, scope) {
   return (scope || document).querySelectorAll(selector);
-}
+};
 
 /**
  * Parses the values of a attribute on a DOM element to a array
@@ -58,81 +48,88 @@ module.exports.removeClass = function removeClass(target, className) {
  * @returns {Boolean}
  */
 
-module.exports.contains = function(element, className) {
-    var classNames = this.attributeToArray(element, 'class');
-    return classNames.indexOf(className) !== -1;
+module.exports.contains = function (element, className) {
+  const classNames = this.attributeToArray(element, 'class');
+  return classNames.indexOf(className) !== -1;
 };
 
-module.exports.createDate = function(date) {
-    return new Date(date).getTime();
+module.exports.createDate = function (date) {
+  return new Date(date).getTime();
 };
 
 module.exports.periodFormatted = function periodFormatted(amount) {
-    var delimiter = ".", minus = '', parsedAsInt = parseInt(amount), n, a;
-    if (isNaN(parsedAsInt)) {
-        return '0';
-    }
+  const delimiter = '.';
+  let minus = '';
+  const parsedAsInt = parseInt(amount, 0);
+  let n;
+  const a = [];
+  if (isNaN(parsedAsInt)) {
+    return '0';
+  }
 
-    if (parsedAsInt < 0) {
-        minus = '-';
-    }
+  if (parsedAsInt < 0) {
+    minus = '-';
+  }
 
-    n = new String(Math.abs(parsedAsInt));
-    a = [];
-    while (n.length > 3) {
-        var nn = n.substr(n.length - 3);
-        a.unshift(nn);
-        n = n.substr(0, n.length - 3);
-    }
+  n = String(Math.abs(parsedAsInt));
 
-    if (n.length > 0) {
-        a.unshift(n);
-    }
+  while (n.length > 3) {
+    const nn = n.substr(n.length - 3);
+    a.unshift(nn);
+    n = n.substr(0, n.length - 3);
+  }
 
-    return minus + a.join(delimiter);
+  if (n.length > 0) {
+    a.unshift(n);
+  }
+
+  return minus + a.join(delimiter);
 };
 
 module.exports.shorten = function (text, maxLength) {
-    var result = text;
+  let result = text;
 
-    if (maxLength < text.length) {
-        result = text.substr(0, maxLength - 3) + '...';
-    }
-    return result;
+  if (maxLength < text.length) {
+    result = `${text.substr(0, maxLength - 3)}...`;
+  }
+  return result;
 };
 
-module.exports.addClass = function(target, className) {
-    if(target) {
-        if(target.classList){
-            target.classList.add(className);
-        } else {
+module.exports.addClass = function (target, className) {
+  if (target) {
+    if (target.classList) {
+      target.classList.add(className);
+    } else {
             // IE9 compat
-            target.className += target.className ? ' ' + className : '' + className + '';
-        }
-        return target;
+            /* eslint-disable */
+      target.className += target.className ? ` ${className}` : `${className}`;
+      /* eslint-enable */
     }
+    return target;
+  }
+  return target;
 };
 
-module.exports.jsonFromUrl = function(search) {
-    var result = {};
-    var params = search.substr(1);
+module.exports.jsonFromUrl = function (search) {
+  const result = {};
+  const params = search.substr(1);
 
-    if(params !== "") {
-        params.split("&").forEach(function (part) {
-            var item = part.split("=");
-            if(item.length > 0 && item[1].length > 0) {
-                var matches = /(\w+)\[(\w+)\]/.exec(item[0]);
-                if(matches != null && matches.length == 3) {
-                    result[matches[1]] = result[matches[1]] || {};
-                    result[matches[1]][matches[2]] = item[1];
-                } else {
-                    result[item[0]] = decodeURIComponent(item[1]);
-                }
-            }
-        });
-    }
+  if (params !== '') {
+    params.split('&').forEach((part) => {
+      const item = part.split('=');
+      if (item.length > 0 && item[1].length > 0) {
+        const matches = /(\w+)\[(\w+)\]/.exec(item[0]);
+        if (matches != null && matches.length === 3) {
+          result[matches[1]] = result[matches[1]] || {};
+          result[matches[1]][matches[2]] = item[1];
+        } else {
+          result[item[0]] = decodeURIComponent(item[1]);
+        }
+      }
+    });
+  }
 
-    return result;
+  return result;
 };
 
 module.exports.areEqualIgnoreCase = function areEqualIgnoreCase(string1, string2) {
