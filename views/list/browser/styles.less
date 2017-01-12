@@ -6,6 +6,29 @@ body,p, figure, h1, h2{
   box-sizing: border-box;
 }
 
+.subform{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:9999;
+  visibility:hidden;
+  padding:40px;
+  text-align: center;
+  background-color:#FFF;
+  color:#FFF;
+  background:rgba(250,90,150,0.95);
+  opacity:0;
+  transition: transform 0.4s cubic-bezier(0, 0, 0.5, 1.05),opacity 0.5s cubic-bezier(0, 0, 0.5, 1.05);
+}
+
+.subform.opened{
+  transform: scale(1);
+  opacity: 1;
+  visibility:visible;
+}
+
 .cows-list{
   flex:1;
 }

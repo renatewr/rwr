@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    {{#each assets.css}}
+    {{#each assets.css}}        
         <link rel="stylesheet" href="{{this.public}}">
     {{/each}}
-    {{#each inline.css}}
+    {{#each inline.css}}        
         <link rel="stylesheet" href="{{this.public}}">
     {{/each}}
     
@@ -30,9 +30,9 @@
     {{/each}}
     
     <script type="text/javascript">
-    if ('serviceWorker' in navigator) {      
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-             .register("sw2.js", {scope: '/api/rwr/'})
+             .register('sw2.js', {scope: '/api/rwr/'})
              .then(function() { console.log('Service Worker 2Registered'); });
     }
     </script>
